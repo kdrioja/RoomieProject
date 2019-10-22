@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "460023259778",
+    "firebase_url": "https://roomie-4590c.firebaseio.com",
+    "project_id": "roomie-4590c",
+    "storage_bucket": "roomie-4590c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460023259778:android:3574a9d5cd2a13a1bd0a9b",
+        "android_client_info": {
+          "package_name": "com.example.roomie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "460023259778-59ru1af03ltd1250j4ln8m2bserathkm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGBH-sZ_gVNK3AFWlydvmIoHrUN81q5D0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460023259778-59ru1af03ltd1250j4ln8m2bserathkm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
