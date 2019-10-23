@@ -23,6 +23,14 @@ import com.google.firebase.auth.FirebaseUser;
  * Signup activity if it is a new user
  */
 
+/**
+ * TO DO: Need to implement continuous login
+ * Note that onCreate() is called when the activity is first created
+ * and onStart() is called after onCreate()
+ *
+ * also onRestart() exists
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mFirebaseAuth;
