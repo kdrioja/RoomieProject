@@ -12,3 +12,17 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
     }
 }
+
+/**
+ log out button
+ //member vars
+
+ FirebaseAuth mFirebaseAuth;
+ private FirebaseAuth.AuthStateListener mAuthStateListener;
+
+ create on click listener
+
+ FirebaseAuth.getInstance().signOut();
+ startActivity(new Intent(HomeActivity.this, MainActivity.class);
+ }
+ **/
