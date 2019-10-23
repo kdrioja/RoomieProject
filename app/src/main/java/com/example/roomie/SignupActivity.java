@@ -56,7 +56,7 @@ public class SignupActivity extends AppCompatActivity {
                 }
                 else if (emailString.isEmpty()) {
                     /**
-                     * TODO: check that it is a valid email
+                     * TO DO: check that it is a valid email
                      */
                     email.setError("Required");
                     email.requestFocus();
