@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,12 +26,14 @@ public class SignupActivity extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     EditText firstName, lastName, email, password;
     Button signupButton;
+    TextView signinTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        signinTextView = findViewById(R.id.signinTextView);
         signupButton = findViewById(R.id.signupButton);
         firstName = findViewById(R.id.firstNameEditText);
         lastName = findViewById(R.id.lastNameEditText);
@@ -86,6 +89,13 @@ public class SignupActivity extends AppCompatActivity {
                     // to catch any errors
                     Toast.makeText(SignupActivity.this, "Error occurred, please try again.", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        signinTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignupActivity.this, MainActivity.class));
             }
         });
     }

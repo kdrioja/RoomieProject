@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     FirebaseUser mFireBaseUser;
     EditText email, password;
-    TextView errorMessage;
-    Button signupButton, loginButton;
+    TextView errorMessage, signupTextView;
+    Button loginButton;
 
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -43,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.emailEditText);
         password = findViewById(R.id.passwordEditText);
         errorMessage = findViewById(R.id.errorMessageTextView);
-        signupButton = findViewById(R.id.signupButton);
+        //signupButton = findViewById(R.id.signupButton);
         loginButton = findViewById(R.id.logonButton);
+        signupTextView = findViewById(R.id.signupTextView);
 
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*
         // if signup button is clicked then we need to transition to the sign up page
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +114,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentSignup);
             }
         });
+        */
 
+        signupTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentSignup = new Intent(MainActivity.this, SignupActivity.class);
+                startActivity(intentSignup);
+            }
+        });
     }
 
     @Override
