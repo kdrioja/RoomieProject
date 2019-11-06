@@ -1,69 +1,20 @@
-package com.example.roomie;
+/**package com.example.roomie;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-public class MainActivity extends AppCompatActivity {
-
-    FirebaseAuth mFirebaseAuth;
-    FirebaseUser mFireBaseUser;
-
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        /*
-        Enter the screen Main screen
-        Check if there is already a persistent user
-        Y -> HomeActivity
-        N -> LoginActivity
-
-        -- style main screen
-        -- re-route app UI
-        -- user names associated with users
-        -- Household class
-        -- User class
-        -- style HomeActivity
-         */
-
-        // get the instance from Firebase
-        mFirebaseAuth = FirebaseAuth.getInstance();
-
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                mFireBaseUser = mFirebaseAuth.getCurrentUser();
-
-                if (mFireBaseUser != null) {
-                    Toast.makeText(MainActivity.this, "Welcome!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
-                }
-                else {
-                    //Toast.makeText(MainActivity.this, "Please log in", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                }
-            }
-        };
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+        setContentView(R.layout.activity_login);
     }
 }
+**/
 
-/**package com.example.roomie;
+package com.example.roomie;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -80,7 +31,21 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Login activity
+ * Can either lead to home page if logged in successfully or
+ * Signup activity if it is a new user
+ */
+
+/**
+ * TO DO: Need to implement continuous login
+ * Note that onCreate() is called when the activity is first created
+ * and onStart() is called after onCreate()
+ *
+ * also onRestart() exists
+ */
+
+public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth mFirebaseAuth;
     FirebaseUser mFireBaseUser;
@@ -93,10 +58,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         // get the instance from Firebase
         mFirebaseAuth = FirebaseAuth.getInstance();
+
         email = findViewById(R.id.emailEditText);
         password = findViewById(R.id.passwordEditText);
         errorMessage = findViewById(R.id.errorMessageTextView);
@@ -107,20 +73,21 @@ public class MainActivity extends AppCompatActivity {
         // Hide error label
         errorMessage.setVisibility(View.INVISIBLE);
 
+        /*
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 mFireBaseUser = mFirebaseAuth.getCurrentUser();
 
                 if (mFireBaseUser != null) {
-                    Toast.makeText(MainActivity.this, "Welcome!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                    Toast.makeText(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 }
                 else {
-                    Toast.makeText(MainActivity.this, "Please log in", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Please log in", Toast.LENGTH_SHORT).show();
                 }
             }
-        };
+        };*/
 
 
         // if login button is clicked then check email and password and proceed to home screen
@@ -132,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
 
                 // First we check that all fields have been completed
                 if (emailString.isEmpty()) {
+                    /**
+                     * TO DO: check that it is a valid email
+                     */
                     email.setError("Required");
                     email.requestFocus();
                 }
@@ -142,26 +112,26 @@ public class MainActivity extends AppCompatActivity {
                 else if (!(emailString.isEmpty() && passwordString.isEmpty())) {
                     // no field was left empty
                     // Creates the new user account
-                    mFirebaseAuth.signInWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    mFirebaseAuth.signInWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(MainActivity.this, "Couldn't log in, please try again.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Couldn't log in, please try again.", Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                             }
                         }
                     });
                 }
                 else {
                     // to catch any errors
-                    Toast.makeText(MainActivity.this, "Error occurred, please try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Error occurred, please try again.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        COMMENTED OUT-----------------
+        /*
         // if signup button is clicked then we need to transition to the sign up page
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,21 +140,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentSignup);
             }
         });
-        COMMENTED OUT-----------------
+        */
 
         signupTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentSignup = new Intent(MainActivity.this, SignupActivity.class);
+                Intent intentSignup = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(intentSignup);
             }
         });
     }
 
-    @Override
+    /*@Override
     protected void onStart() {
         super.onStart();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
-    }
+    }*/
 }
-**/

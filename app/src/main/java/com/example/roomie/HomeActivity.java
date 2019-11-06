@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,6 +39,9 @@ public class HomeActivity extends AppCompatActivity {
                 logout();
             }
         });
+
+        // Testing that the display name update was successful in SignupActivity
+        Toast.makeText(HomeActivity.this, mFirebaseUser.getDisplayName(), Toast.LENGTH_LONG);
 
     }
 
