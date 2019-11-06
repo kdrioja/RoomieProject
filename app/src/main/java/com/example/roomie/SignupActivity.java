@@ -40,6 +40,8 @@ public class SignupActivity extends AppCompatActivity {
         email = findViewById(R.id.emailEditText);
         password = findViewById(R.id.passwordEditText);
 
+        mFirebaseAuth = FirebaseAuth.getInstance();
+
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

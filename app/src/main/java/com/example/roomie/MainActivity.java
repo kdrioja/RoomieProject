@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.logonButton);
         signupTextView = findViewById(R.id.signupTextView);
 
+        // Hide error label
+        errorMessage.setVisibility(View.INVISIBLE);
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 mFireBaseUser = mFirebaseAuth.getCurrentUser();
 
                 if (mFireBaseUser != null) {
-                    Toast.makeText(MainActivity.this, "You are logged in.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Welcome!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 }
                 else {
