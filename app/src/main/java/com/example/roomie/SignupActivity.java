@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Signup activity
@@ -33,6 +35,8 @@ public class SignupActivity extends AppCompatActivity {
     TextView signinTextView;
 
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +55,13 @@ public class SignupActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String firstString = firstName.getText().toString();
-                final String lastString = lastName.getText().toString();
-                String emailString = email.getText().toString();
-                String passwordString = password.getText().toString();
+                final String firstString = firstName.getText().toString().trim();
+                final String lastString = lastName.getText().toString().trim();
+                final String emailString = email.getText().toString().trim();
+                String passwordString = password.getText().toString().trim();
+
+                mFirebaseDatabase = FirebaseDatabase.getInstance();
+                mDatabaseReference = mFirebaseDatabase.getReference().child("users");
 
                 // First we check that all fields have been completed
                 if (firstString.isEmpty()) {
@@ -66,9 +73,6 @@ public class SignupActivity extends AppCompatActivity {
                     lastName.requestFocus();
                 }
                 else if (emailString.isEmpty()) {
-                    /**
-                     * TO DO: check that it is a valid email
-                     */
                     email.setError("Required");
                     email.requestFocus();
                 }
@@ -85,25 +89,18 @@ public class SignupActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Toast.makeText(SignupActivity.this, "Sign up was successful!", Toast.LENGTH_SHORT).show();
 
-                                // Set the User's name
-                                // get the instance from Firebase
-                                mFirebaseAuth = FirebaseAuth.getInstance();
+                                // Get newly created user
                                 mFireBaseUser = mFirebaseAuth.getCurrentUser();
 
-                                if (mFireBaseUser != null) {
-                                    UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
-                                            .setDisplayName(firstString + " " + lastString).build();
+                                // Add user to users
+                                User newUser = new User(firstString, lastString, emailString, "No chore", false, mFireBaseUser.getUid(), "");
+                                mDatabaseReference.child(mFireBaseUser.getUid()).setValue(newUser);
 
-                                    mFireBaseUser.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                       @Override
-                                       public void onComplete(@NonNull Task<Void> task) {
-                                           if (task.isSuccessful()) {
-                                               Log.d("SignupActivity", "User profile updated.");
-                                           }
-                                       }
-                                    });
-                                }
+                                // Add user's email to emails
+                                //mDatabaseReference = mFirebaseDatabase.getReference().child("emails");
+                                //mDatabaseReference.child("emails").child(emailString).setValue(mFireBaseUser.getUid());
 
+                                // Go to HomeActivity
                                 startActivity(new Intent(SignupActivity.this, HomeActivity.class));
                             }
                             else {
@@ -127,3 +124,23 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 }
+
+/**
+ // Set the User's name
+ // get the instance from Firebase
+ mFirebaseAuth = FirebaseAuth.getInstance();
+ mFireBaseUser = mFirebaseAuth.getCurrentUser();
+
+ if (mFireBaseUser != null) {
+ UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
+ .setDisplayName(firstString + " " + lastString).build();
+
+ mFireBaseUser.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+@Override
+public void onComplete(@NonNull Task<Void> task) {
+if (task.isSuccessful()) {
+Log.d("SignupActivity", "User profile updated.");
+}
+}
+});
+ }**/

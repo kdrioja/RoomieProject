@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "460023259778-4od8b5ebcjb3bi63tv9lb100ek9ovhc0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.roomie",
+            "certificate_hash": "de354417736abf27617537974b7e8a7c31eebc73"
+          }
+        },
+        {
           "client_id": "460023259778-59ru1af03ltd1250j4ln8m2bserathkm.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -22,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
+        // Checking the connection to the Firebase database
+        Toast.makeText(MainActivity.this, "Firebase Connection Success", Toast.LENGTH_LONG).show();
+/*
         Enter the screen Main screen
         Check if there is already a persistent user
         Y -> HomeActivity
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         -- Household class
         -- User class
         -- style HomeActivity
-         */
+*/
 
         // get the instance from Firebase
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 mFireBaseUser = mFirebaseAuth.getCurrentUser();
 
                 if (mFireBaseUser != null) {
-                    Toast.makeText(MainActivity.this, "Welcome!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "Welcome!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 }
                 else {
@@ -56,11 +58,13 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
     }
+
 }
 
 /**package com.example.roomie;

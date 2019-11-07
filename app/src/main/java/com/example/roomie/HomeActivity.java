@@ -12,14 +12,19 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class HomeActivity extends AppCompatActivity {
 
     FirebaseUser mFirebaseUser;
     FirebaseAuth mFirebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
     TextView householdTextView;
     Button logoutButton;
+
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,9 @@ public class HomeActivity extends AppCompatActivity {
         // Instantiate variables
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        //mDatabaseReference = mFirebaseDatabase.getReference().child("user");
+
         householdTextView = findViewById(R.id.householdNameTextView);
         logoutButton = findViewById(R.id.logoutButton);
 
@@ -39,11 +47,9 @@ public class HomeActivity extends AppCompatActivity {
                 logout();
             }
         });
-
-        // Testing that the display name update was successful in SignupActivity
-        Toast.makeText(HomeActivity.this, mFirebaseUser.getDisplayName(), Toast.LENGTH_LONG);
-
     }
+
+    //private void writeNewUser()
 
     // Logging out of current account
     protected void logout() {
@@ -72,4 +78,17 @@ public class HomeActivity extends AppCompatActivity {
  FirebaseAuth.getInstance().signOut();
  startActivity(new Intent(HomeActivity.this, MainActivity.class);
  }
+
+ ---------------------------------------------------------------------------------------------------
+
+ // Testing that the display name update was successful in SignupActivity
+ //Toast.makeText(HomeActivity.this, mFirebaseUser.getDisplayName(), Toast.LENGTH_LONG).show();
+ // ^^ It did  not do it
+
+
+ // Testing out adding data to the database
+
+User testUser = new User("Test", "User", "tu@gmai.com");
+//mDatabase.child("users").child("1").setValue(testUser);
+        mDatabaseReference.setValue(testUser);
  **/
