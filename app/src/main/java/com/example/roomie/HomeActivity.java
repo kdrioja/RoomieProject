@@ -31,12 +31,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Instantiate variables
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        //mDatabaseReference = mFirebaseDatabase.getReference().child("user");
-
         householdTextView = findViewById(R.id.householdNameTextView);
         logoutButton = findViewById(R.id.logoutButton);
 
@@ -44,15 +38,23 @@ public class HomeActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logout();
+                logout(null);
             }
         });
+
+        // Instantiate variables
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mFirebaseDatabase.getReference();
+
+
     }
 
     //private void writeNewUser()
 
     // Logging out of current account
-    protected void logout() {
+    public void logout(View view) {
         mFirebaseAuth.signOut();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 

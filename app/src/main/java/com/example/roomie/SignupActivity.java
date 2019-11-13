@@ -61,7 +61,8 @@ public class SignupActivity extends AppCompatActivity {
                 String passwordString = password.getText().toString().trim();
 
                 mFirebaseDatabase = FirebaseDatabase.getInstance();
-                mDatabaseReference = mFirebaseDatabase.getReference().child("users");
+                mDatabaseReference = mFirebaseDatabase.getReference();
+                //mDatabaseReference = mFirebaseDatabase.getReference().child("users");
 
                 // First we check that all fields have been completed
                 if (firstString.isEmpty()) {
@@ -93,12 +94,17 @@ public class SignupActivity extends AppCompatActivity {
                                 mFireBaseUser = mFirebaseAuth.getCurrentUser();
 
                                 // Add user to users
+                                DatabaseReference usersReference = mDatabaseReference.child("users");
                                 User newUser = new User(firstString, lastString, emailString, "No chore", false, mFireBaseUser.getUid(), "");
-                                mDatabaseReference.child(mFireBaseUser.getUid()).setValue(newUser);
+                                usersReference.child(mFireBaseUser.getUid()).setValue(newUser);
 
                                 // Add user's email to emails
                                 //mDatabaseReference = mFirebaseDatabase.getReference().child("emails");
-                                //mDatabaseReference.child("emails").child(emailString).setValue(mFireBaseUser.getUid());
+                                //mDatabaseReference.child(emailString).setValue(mFireBaseUser.getUid());
+
+
+                                DatabaseReference emailsReference = mDatabaseReference.child("emails");
+                                emailsReference.child(encodeUserEmail(emailString)).setValue(mFireBaseUser.getUid());
 
                                 // Go to HomeActivity
                                 startActivity(new Intent(SignupActivity.this, HomeActivity.class));
@@ -123,6 +129,15 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+
+    protected static String encodeUserEmail(String userEmail) {
+        return userEmail.replace(".", ",");
+    }
+
+    protected static String decodeUserEmail(String userEmail) {
+        return userEmail.replace(",", ".");
+    }
+
 }
 
 /**
