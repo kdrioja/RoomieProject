@@ -6,4 +6,82 @@
     android:layout_height="match_parent"
     tools:context=".CreateHouseholdActivity">
 
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="15dp" />
+
+    <TextView
+        android:id="@+id/createTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create a new household"
+        android:textSize="22sp"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="75dp" />
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="165dp"
+        tools:layout_editor_absoluteY="131dp" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="241dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="229dp" />
+
+    <TextView
+        android:id="@+id/householdNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Household name:"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="140dp" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        tools:layout_editor_absoluteX="284dp"
+        tools:layout_editor_absoluteY="222dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add your roommates using their email address:"
+        android:textSize="17sp"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="189dp" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        tools:layout_editor_absoluteX="307dp"
+        tools:layout_editor_absoluteY="21dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="358dp"
+        android:layout_height="178dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+        android:textSize="17sp"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="291dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
