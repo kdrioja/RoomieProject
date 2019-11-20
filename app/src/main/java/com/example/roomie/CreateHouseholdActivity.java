@@ -101,7 +101,7 @@ public class CreateHouseholdActivity extends AppCompatActivity {
      * @param view
      */
     public void onAddClicked(View view) {
-        final DatabaseReference emailsTableReference = mDatabaseReference.child("emails");
+        final DatabaseReference emailsNodeReference = mDatabaseReference.child("emails");
         final String inputEmail = emailEditText.getText().toString();
         //final String commaEmail = emailEditText.getText().toString().replace('.', ',');
 
@@ -114,10 +114,10 @@ public class CreateHouseholdActivity extends AppCompatActivity {
             //Replace all '.' with ','
             final String commaEmail = emailEditText.getText().toString().replace('.', ',');
 
-            //emailsTableReference.child(commaEmail);
+            //emailsNodeReference.child(commaEmail);
 
 
-            emailsTableReference.child(commaEmail).addListenerForSingleValueEvent(new ValueEventListener() {
+            emailsNodeReference.child(commaEmail).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     /*
@@ -169,11 +169,32 @@ public class CreateHouseholdActivity extends AppCompatActivity {
 
     /**
      * Creates a household object
-     * Adds the household object to the households table
-     * Adds the household-id to each of the user's tables
+     * Adds the household object to the households node
+     * Adds the household-id to each of the user's nodes
      * @param view
      */
     public void onCreateClicked(View view) {
+        DatabaseReference householdsNodeReference = mDatabaseReference.child("households");
+        String householdName = nameEditText.getText().toString();
 
+        if (householdName.isEmpty()) {
+            nameEditText.setError("Required");
+            nameEditText.requestFocus();
+        }
+        else {
+            //No need to check if roommatesIDs is empty bc it will always have at least 1 roommate
+            String newHouseholdID = householdsNodeReference.push().getKey();
+            List<String> chores = new ArrayList<>();
+
+            for (int i = 0; i < roommateIDs.size(); i++) {
+                chores.add("No chore");
+            }
+
+            //Create Household object
+            Household newHousehold = new Household(householdName, roommateIDs, chores, "MONDAY");
+            householdsNodeReference.child(newHouseholdID).setValue(newHousehold);
+
+            startActivity(new Intent(CreateHouseholdActivity.this, HomeActivity.class));
+        }
     }
 }

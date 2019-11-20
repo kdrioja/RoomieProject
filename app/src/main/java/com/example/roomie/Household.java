@@ -5,30 +5,18 @@ import java.util.List;
 
 public class Household {
     private String name;
-    private List<User> roommates;
-    private List<String> chores;
+    private List<String> roommates; // Contains uid of all roommates
+    private List<String> chores; // Can be equal to or less than the size of roommates
     private String rotationDay; // set as Monday by default
 
     public Household() {}
 
-    public Household(String name, String rotationDay) {
+    public Household(String name, List<String> roommates, List<String> chores, String rotationDay) {
         this.name = name;
-        this.roommates = new ArrayList<>();
-        this.chores = new ArrayList<>();
+        this.roommates = roommates;
+        this.chores = chores;
         this.rotationDay = rotationDay;
     }
-
-    public void addChore(String newChore) {
-        this.chores.add(newChore);
-    }
-
-    public void addRoommate(User newRoommate) {
-        this.roommates.add(newRoommate);
-    }
-
-    /**
-     * need to implement remove chore and remove roommate
-     */
 
     public String getName() {
         return name;
@@ -38,11 +26,11 @@ public class Household {
         this.name = name;
     }
 
-    public List<User> getRoommates() {
+    public List<String> getRoommates() {
         return roommates;
     }
 
-    public void setRoommates(List<User> roommates) {
+    public void setRoommates(List<String> roommates) {
         this.roommates = roommates;
     }
 
