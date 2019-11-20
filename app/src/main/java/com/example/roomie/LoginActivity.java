@@ -30,29 +30,23 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-/**
- * Login activity
- * Can either lead to home page if logged in successfully or
- * Signup activity if it is a new user
- */
-
-/**
- * TO DO: Need to implement continuous login
- * Note that onCreate() is called when the activity is first created
- * and onStart() is called after onCreate()
- *
- * also onRestart() exists
- */
 
 public class LoginActivity extends AppCompatActivity {
 
-    FirebaseAuth mFirebaseAuth;
-    FirebaseUser mFireBaseUser;
     EditText email, password;
     TextView errorMessage, signupTextView;
     Button loginButton;
 
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFireBaseUser;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mDatabaseReference;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
@@ -60,13 +54,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // get the instance from Firebase
+        //Initialize member variables
         mFirebaseAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mDatabase.getReference();
 
         email = findViewById(R.id.emailEditText);
         password = findViewById(R.id.passwordEditText);
         errorMessage = findViewById(R.id.errorMessageTextView);
-        //signupButton = findViewById(R.id.signupButton);
         loginButton = findViewById(R.id.logonButton);
         signupTextView = findViewById(R.id.signupTextView);
 
@@ -90,18 +85,22 @@ public class LoginActivity extends AppCompatActivity {
         };*/
 
 
-        // if login button is clicked then check email and password and proceed to home screen
+        signupTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+            }
+        });
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String emailString = email.getText().toString();
                 String passwordString = password.getText().toString();
 
-                // First we check that all fields have been completed
+                // Check that all fields have been completed
                 if (emailString.isEmpty()) {
-                    /**
-                     * TO DO: check that it is a valid email
-                     */
                     email.setError("Required");
                     email.requestFocus();
                 }
@@ -110,17 +109,37 @@ public class LoginActivity extends AppCompatActivity {
                     password.requestFocus();
                 }
                 else if (!(emailString.isEmpty() && passwordString.isEmpty())) {
-                    // no field was left empty
+
                     // Creates the new user account
                     mFirebaseAuth.signInWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (!task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Couldn't log in, please try again.", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                            }
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Couldn't log in, please try again.", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            //Sign in is successful, check if the user has a household-id value
+                            mFireBaseUser = mFirebaseAuth.getCurrentUser();
+
+                            DatabaseReference usersTableReference = mDatabaseReference.child("users").child(mFireBaseUser.getUid());
+
+                            usersTableReference.child("household-id").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.exists()) {
+                                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                    }
+                                    else {
+                                        startActivity(new Intent(LoginActivity.this, NoHouseholdActivity.class));
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    //ERROR
+                                }
+                            });
+                        }
                         }
                     });
                 }
@@ -128,25 +147,6 @@ public class LoginActivity extends AppCompatActivity {
                     // to catch any errors
                     Toast.makeText(LoginActivity.this, "Error occurred, please try again.", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-
-        /*
-        // if signup button is clicked then we need to transition to the sign up page
-        signupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentSignup = new Intent(MainActivity.this, SignupActivity.class);
-                startActivity(intentSignup);
-            }
-        });
-        */
-
-        signupTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentSignup = new Intent(LoginActivity.this, SignupActivity.class);
-                startActivity(intentSignup);
             }
         });
     }

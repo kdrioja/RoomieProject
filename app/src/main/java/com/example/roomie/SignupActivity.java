@@ -107,7 +107,7 @@ public class SignupActivity extends AppCompatActivity {
                                 emailsReference.child(encodeUserEmail(emailString)).setValue(mFireBaseUser.getUid());
 
                                 // Go to HomeActivity
-                                startActivity(new Intent(SignupActivity.this, HomeActivity.class));
+                                startActivity(new Intent(SignupActivity.this, NoHouseholdActivity.class));
                             }
                             else {
                                 Toast.makeText(SignupActivity.this, "Sign up was unsuccessful, please try again.", Toast.LENGTH_SHORT).show();
