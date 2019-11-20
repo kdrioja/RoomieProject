@@ -56,10 +56,14 @@ public class CreateHouseholdActivity extends AppCompatActivity {
 
     public void onCreateClicked(View view) {
 
-        
     }
 
     public void onAddClicked(View view) {
+        String newEmail = emailEditText.getText().toString();
 
+        if (newEmail.isEmpty()) {
+            emailEditText.setError("Required");
+            emailEditText.requestFocus();
+        }
     }
 }
