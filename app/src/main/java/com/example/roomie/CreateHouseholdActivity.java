@@ -56,6 +56,7 @@ public class CreateHouseholdActivity extends AppCompatActivity {
 
     public void onCreateClicked(View view) {
 
+        
     }
 
     public void onAddClicked(View view) {
