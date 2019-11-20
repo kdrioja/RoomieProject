@@ -16,12 +16,12 @@
         android:layout_marginEnd="202dp"
         android:layout_marginRight="202dp"
         android:text="Cancel"
-        app:layout_constraintEnd_toStartOf="@+id/nextButton"
+        app:layout_constraintEnd_toStartOf="@+id/createButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/createTextView"
+        android:id="@+id/createTextLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="87dp"
@@ -33,7 +33,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nextButton" />
+        app:layout_constraintTop_toBottomOf="@+id/createButton" />
 
     <EditText
         android:id="@+id/nameEditText"
@@ -45,7 +45,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/createTextLabel" />
 
     <EditText
         android:id="@+id/emailEditText"
@@ -60,10 +60,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toStartOf="@+id/addButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/addUserTextLabel" />
 
     <TextView
-        android:id="@+id/householdNameTextView"
+        android:id="@+id/householdNameTextLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -75,7 +75,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/nameEditText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/createTextLabel" />
 
     <Button
         android:id="@+id/addButton"
@@ -86,10 +86,10 @@
         android:layout_marginRight="39dp"
         android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/addUserTextLabel" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/addUserTextLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -104,18 +104,18 @@
         app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
 
     <Button
-        android:id="@+id/nextButton"
+        android:id="@+id/createButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Next"
+        android:text="Create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/emailsTextView"
         android:layout_width="358dp"
         android:layout_height="178dp"
         android:layout_marginStart="25dp"

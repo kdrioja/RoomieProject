@@ -7,7 +7,7 @@ public class Household {
     private String name;
     private List<User> roommates;
     private List<String> chores;
-    private String rotationDay; // day of the week
+    private String rotationDay; // set as Monday by default
 
     public Household() {}
 

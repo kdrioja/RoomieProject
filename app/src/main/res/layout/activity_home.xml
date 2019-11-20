@@ -7,7 +7,7 @@
     tools:context=".HomeActivity">
 
     <TextView
-        android:id="@+id/householdNameTextView"
+        android:id="@+id/householdNameTextLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
@@ -34,7 +34,7 @@
         android:fontFamily="sans-serif-thin"
         android:onClick="logout"
         android:text="Logout"
-        app:layout_constraintEnd_toStartOf="@+id/householdNameTextView"
+        app:layout_constraintEnd_toStartOf="@+id/householdNameTextLabel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
