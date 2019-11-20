@@ -98,11 +98,6 @@ public class SignupActivity extends AppCompatActivity {
                                 User newUser = new User(firstString, lastString, emailString, "No chore", false, mFireBaseUser.getUid(), "");
                                 usersReference.child(mFireBaseUser.getUid()).setValue(newUser);
 
-                                // Add user's email to emails
-                                //mDatabaseReference = mFirebaseDatabase.getReference().child("emails");
-                                //mDatabaseReference.child(emailString).setValue(mFireBaseUser.getUid());
-
-
                                 DatabaseReference emailsReference = mDatabaseReference.child("emails");
                                 emailsReference.child(encodeUserEmail(emailString)).setValue(mFireBaseUser.getUid());
 
@@ -139,23 +134,3 @@ public class SignupActivity extends AppCompatActivity {
     }
 
 }
-
-/**
- // Set the User's name
- // get the instance from Firebase
- mFirebaseAuth = FirebaseAuth.getInstance();
- mFireBaseUser = mFirebaseAuth.getCurrentUser();
-
- if (mFireBaseUser != null) {
- UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
- .setDisplayName(firstString + " " + lastString).build();
-
- mFireBaseUser.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
-@Override
-public void onComplete(@NonNull Task<Void> task) {
-if (task.isSuccessful()) {
-Log.d("SignupActivity", "User profile updated.");
-}
-}
-});
- }**/
