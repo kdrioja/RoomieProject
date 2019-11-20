@@ -32,10 +32,26 @@
         android:layout_marginEnd="11dp"
         android:layout_marginRight="11dp"
         android:fontFamily="sans-serif-thin"
-        android:onClick="logout"
+        android:onClick="onLogoutClicked"
         android:text="Logout"
         app:layout_constraintEnd_toStartOf="@+id/householdNameTextLabel"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="196dp"
+        android:layout_marginLeft="196dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:fontFamily="sans-serif-thin"
+        android:onClick="onSettingsClicked"
+        android:text="Settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/logoutButton"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

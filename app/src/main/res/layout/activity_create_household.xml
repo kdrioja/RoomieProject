@@ -15,6 +15,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="202dp"
         android:layout_marginRight="202dp"
+        android:onClick="onCancelClicked"
         android:text="Cancel"
         app:layout_constraintEnd_toStartOf="@+id/createButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/createButton" />
 
     <EditText
-        android:id="@+id/nameEditText"
+        android:id="@+id/householdNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
@@ -73,7 +74,7 @@
         android:layout_marginRight="3dp"
         android:text="Household name:"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/nameEditText"
+        app:layout_constraintEnd_toStartOf="@+id/householdNameEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createTextLabel" />
 
@@ -84,6 +85,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="39dp"
         android:layout_marginRight="39dp"
+        android:onClick="onAddClicked"
         android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addUserTextLabel" />
@@ -101,7 +103,7 @@
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/householdNameEditText" />
 
     <Button
         android:id="@+id/createButton"
@@ -110,6 +112,7 @@
         android:layout_marginTop="21dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:onClick="onCreateClicked"
         android:text="Create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

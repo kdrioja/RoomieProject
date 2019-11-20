@@ -25,15 +25,15 @@ public class NoHouseholdActivity extends AppCompatActivity {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
     }
 
-    public void settingsClicked(View view) {
+    public void onSettingsClicked(View view) {
         startActivity(new Intent(NoHouseholdActivity.this, SettingsActivity.class));
     }
 
-    public void createHousehold(View view) {
+    public void onCreateHouseholdClicked(View view) {
         startActivity(new Intent(NoHouseholdActivity.this, CreateHouseholdActivity.class));
     }
 
-    public void logoutClicked(View view) {
+    public void onLogoutClicked(View view) {
         mFirebaseAuth.signOut();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 

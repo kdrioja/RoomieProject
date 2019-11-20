@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logout(null);
+                onLogoutClicked(null);
             }
         });
 
@@ -53,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
     //private void writeNewUser()
 
     // Logging out of current account
-    public void logout(View view) {
+    public void onLogoutClicked(View view) {
         mFirebaseAuth.signOut();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
@@ -64,6 +64,10 @@ public class HomeActivity extends AppCompatActivity {
         else {
             Toast.makeText(HomeActivity.this, "Logged out unsuccessful, please try again.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void onSettingsClicked(View view) {
+        startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
     }
 }
 
