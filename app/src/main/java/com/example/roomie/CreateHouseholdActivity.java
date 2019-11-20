@@ -194,6 +194,13 @@ public class CreateHouseholdActivity extends AppCompatActivity {
             Household newHousehold = new Household(householdName, roommateIDs, chores, "MONDAY");
             householdsNodeReference.child(newHouseholdID).setValue(newHousehold);
 
+            //Add the new household id to all of the user's nodes
+            DatabaseReference usersNodeReference = mDatabaseReference.child("users");
+
+            for (int i = 0; i < roommateIDs.size(); i++) {
+                usersNodeReference.child(roommateIDs.get(i)).child("household").setValue(newHouseholdID);
+            }
+
             startActivity(new Intent(CreateHouseholdActivity.this, HomeActivity.class));
         }
     }

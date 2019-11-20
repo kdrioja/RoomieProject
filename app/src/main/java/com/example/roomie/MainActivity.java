@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
                 //There is a user so check if they have a household id or not
                 final DatabaseReference usersTableReference = mDatabaseReference.child("users").child(mFireBaseUser.getUid());
 
-                usersTableReference.child("household-id").addListenerForSingleValueEvent(new ValueEventListener() {
+                usersTableReference.child("household").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
+                        if (dataSnapshot.getValue() != null) {
                             //User does have a household
                             startActivity(new Intent(MainActivity.this, HomeActivity.class));
                         } else {

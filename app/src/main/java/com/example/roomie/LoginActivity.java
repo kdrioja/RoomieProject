@@ -1,19 +1,3 @@
-/**package com.example.roomie;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-public class LoginActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-    }
-}
-**/
-
 package com.example.roomie;
 
 import androidx.annotation.NonNull;
@@ -68,23 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         // Hide error label
         errorMessage.setVisibility(View.INVISIBLE);
 
-        /*
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                mFireBaseUser = mFirebaseAuth.getCurrentUser();
-
-                if (mFireBaseUser != null) {
-                    Toast.makeText(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                }
-                else {
-                    Toast.makeText(LoginActivity.this, "Please log in", Toast.LENGTH_SHORT).show();
-                }
-            }
-        };*/
-
-
         signupTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,10 +90,10 @@ public class LoginActivity extends AppCompatActivity {
 
                             DatabaseReference usersTableReference = mDatabaseReference.child("users").child(mFireBaseUser.getUid());
 
-                            usersTableReference.child("household-id").addListenerForSingleValueEvent(new ValueEventListener() {
+                            usersTableReference.child("household").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.exists()) {
+                                    if (dataSnapshot.getValue() != null) {
                                         startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                                     }
                                     else {
