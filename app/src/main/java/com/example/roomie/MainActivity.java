@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 usersTableReference.child("household").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.getValue() != null) {
+                        if (dataSnapshot.getValue() != null && dataSnapshot.getValue().toString().length() != 0) {
                             //User does have a household
                             startActivity(new Intent(MainActivity.this, HomeActivity.class));
                         } else {

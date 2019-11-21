@@ -14,7 +14,8 @@ public class User {
 
     public User() {}
 
-    public User(String firstName, String lastName, String email, String chore, boolean choreComplete, String id, String household) {
+    public User(String firstName, String lastName, String email, String chore,
+                boolean choreComplete, String id, String household) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

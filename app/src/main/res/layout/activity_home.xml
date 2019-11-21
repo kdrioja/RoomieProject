@@ -7,19 +7,19 @@
     tools:context=".HomeActivity">
 
     <TextView
-        android:id="@+id/householdNameTextLabel"
+        android:id="@+id/householdNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="116dp"
         android:layout_marginRight="116dp"
         android:fontFamily="sans-serif-thin"
-        android:text="Household Name"
+        android:text="123 Murica Aisle"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/logoutButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -29,12 +29,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
+        android:layout_marginEnd="201dp"
+        android:layout_marginRight="201dp"
         android:fontFamily="sans-serif-thin"
         android:onClick="onLogoutClicked"
         android:text="Logout"
-        app:layout_constraintEnd_toStartOf="@+id/householdNameTextLabel"
+        app:layout_constraintEnd_toStartOf="@+id/settingsButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,16 +42,196 @@
         android:id="@+id/settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="196dp"
-        android:layout_marginLeft="196dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:fontFamily="sans-serif-thin"
         android:onClick="onSettingsClicked"
         android:text="Settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/logoutButton"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/choreThisWeekTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="231dp"
+        android:layout_marginRight="231dp"
+        android:text="Your chore this week:"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/householdNameTextView" />
+
+    <TextView
+        android:id="@+id/choreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:text="Wash living room curtains"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/completedButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choreThisWeekTextView" />
+
+    <Button
+        android:id="@+id/completedButton"
+        android:layout_width="179dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:text="Mark as completed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/householdNameTextView" />
+
+    <TableLayout
+        android:layout_width="410dp"
+        android:layout_height="485dp"
+        android:layout_marginTop="41dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/completedButton">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#DAE8FC">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Susan" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Clean Kitchen" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Completed" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#DAE8FC">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Karen" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Clean bathroom" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Completed" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#DAE8FC">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Michelle" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Vacuum common areas" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Completed" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#DAE8FC">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Monica" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Wash living room curtains" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Pending" />
+        </TableRow>
+
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

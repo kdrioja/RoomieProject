@@ -1,5 +1,6 @@
 package com.example.roomie;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,8 +12,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -20,6 +24,8 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     TextView householdTextView;
     Button logoutButton;
+
+    String usersHouseholdID;
 
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FirebaseDatabase mFirebaseDatabase;
@@ -30,16 +36,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        householdTextView = findViewById(R.id.householdNameTextLabel);
+        householdTextView = findViewById(R.id.householdNameTextView);
         logoutButton = findViewById(R.id.logoutButton);
-
-        // Logging out function
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onLogoutClicked(null);
-            }
-        });
 
         // Instantiate variables
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -48,9 +46,59 @@ public class HomeActivity extends AppCompatActivity {
         mDatabaseReference = mFirebaseDatabase.getReference();
 
 
-    }
+        /*
+        // Get the user's household ID from their user node
 
-    //private void writeNewUser()
+        DatabaseReference usersNodeReference = mDatabaseReference.child("users").child(mFirebaseUser.getUid()).child("household");
+
+        usersNodeReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() != null) {
+                    //Toast.makeText(HomeActivity.this, dataSnapshot.toString(), Toast.LENGTH_SHORT).show();
+                    usersHouseholdID = dataSnapshot.getValue().toString();
+                }
+                else {
+                    usersHouseholdID = "";
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //ERROR
+            }
+        });
+
+        // Change householdNameTextView to the household's name
+        DatabaseReference householdNodeReference = mDatabaseReference.child("households").child(usersHouseholdID).child("name");
+
+        householdNodeReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() != null) {
+                    householdTextView.setText(dataSnapshot.getValue().toString());
+                }
+                else {
+                    householdTextView.setText("COULDN'T GET IT");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        */
+
+        // Logging out function
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onLogoutClicked(null);
+            }
+        });
+    }
 
     // Logging out of current account
     public void onLogoutClicked(View view) {
@@ -70,30 +118,3 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
     }
 }
-
-/**
- log out button
- //member vars
-
- FirebaseAuth mFirebaseAuth;
- private FirebaseAuth.AuthStateListener mAuthStateListener;
-
- create on click listener
-
- FirebaseAuth.getInstance().signOut();
- startActivity(new Intent(HomeActivity.this, MainActivity.class);
- }
-
- ---------------------------------------------------------------------------------------------------
-
- // Testing that the display name update was successful in SignupActivity
- //Toast.makeText(HomeActivity.this, mFirebaseUser.getDisplayName(), Toast.LENGTH_LONG).show();
- // ^^ It did  not do it
-
-
- // Testing out adding data to the database
-
-User testUser = new User("Test", "User", "tu@gmai.com");
-//mDatabase.child("users").child("1").setValue(testUser);
-        mDatabaseReference.setValue(testUser);
- **/

@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                             usersTableReference.child("household").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.getValue() != null) {
+                                    if (dataSnapshot.getValue() != null && dataSnapshot.getValue().toString().length() != 0) {
                                         startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                                     }
                                     else {
