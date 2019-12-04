@@ -184,14 +184,14 @@ public class CreateHouseholdActivity extends AppCompatActivity {
         else {
             //No need to check if roommatesIDs is empty bc it will always have at least 1 roommate
             String newHouseholdID = householdsNodeReference.push().getKey();
-            List<String> chores = new ArrayList<>();
+            List<Chore> chores = new ArrayList<>();
 
             for (int i = 0; i < roommateIDs.size(); i++) {
-                chores.add("No chore");
+                chores.add(new Chore("No chore", "", false));
             }
 
             //Create Household object
-            Household newHousehold = new Household(householdName, roommateIDs, chores, "MONDAY");
+            Household newHousehold = new Household(householdName, roommateIDs, chores, "MONDAY", roommateIDs.size(), 0);
             householdsNodeReference.child(newHouseholdID).setValue(newHousehold);
 
             //Add the new household id to all of the user's nodes
